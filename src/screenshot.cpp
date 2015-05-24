@@ -14,9 +14,9 @@ Screenshot::Screenshot(QObject *parent) :
 
 void Screenshot::capture()
 {
-    pendingScreenshot = QString("%1/Screenshot-%2.png")
+    pendingScreenshot = QString("%1/screenshots/%2.png")
             .arg(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation))
-            .arg(QDateTime::currentDateTime().toString("dd-MM-yy-hh-mm-ss"));
+            .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss"));
 
     QDBusPendingCall async = iface->asyncCall("saveScreenshot", pendingScreenshot);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
